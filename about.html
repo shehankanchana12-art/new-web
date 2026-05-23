@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About SoftVision IT Group – MCC Mahiyanganaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{--sv-navy:#0a1628;--sv-blue:#1a4fd6;--sv-cyan:#00c8e0;--sv-gold:#f5c842;--sv-mid:#c7d4f5;--sv-white:#ffffff;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--sv-navy);color:var(--sv-white);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,200,224,0.15);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
+  .logo-wrap{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+  .logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--sv-blue),var(--sv-cyan));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:white;}
+  .logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:white;}
+  .logo-text span{color:var(--sv-cyan);}
+  .nav-links{display:flex;gap:1.5rem;list-style:none;}
+  .nav-links a{color:var(--sv-mid);font-size:0.875rem;font-weight:500;text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--sv-cyan);}
+  .nav-cta{background:linear-gradient(90deg,var(--sv-blue),var(--sv-cyan));color:white;font-family:'Syne',sans-serif;font-weight:600;font-size:0.8rem;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;}
+  .hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;}
+  .hamburger span{width:24px;height:2px;background:white;border-radius:2px;}
+  .mobile-menu{display:none;position:fixed;inset:64px 0 0 0;z-index:99;background:rgba(10,22,40,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:0.75rem;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:var(--sv-mid);font-family:'Syne',sans-serif;font-weight:600;font-size:1.05rem;text-decoration:none;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+  .page-hero{padding:120px 2rem 60px;background:radial-gradient(circle at top right,rgba(0,200,224,0.18),transparent 45%),radial-gradient(circle at 20% 20%,rgba(26,79,214,0.12),transparent 30%);position:relative;overflow:hidden;}
+  .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,224,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,224,0.04) 1px,transparent 1px);background-size:50px 50px;}
+  .hero-inner{position:relative;max-width:850px;margin:0 auto;text-align:center;}
+  .page-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,200,224,0.1);border:1px solid rgba(0,200,224,0.3);color:var(--sv-cyan);font-size:0.72rem;font-weight:700;padding:0.35rem 0.9rem;border-radius:100px;margin-bottom:1.25rem;letter-spacing:0.1em;text-transform:uppercase;}
+  .page-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
+  .page-title span{color:var(--sv-cyan);}
+  .page-desc{color:var(--sv-mid);font-size:1.05rem;line-height:1.75;max-width:640px;margin:0 auto 2rem;}
+  .btn-primary{background:linear-gradient(90deg,var(--sv-blue),var(--sv-cyan));color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;padding:0.85rem 2rem;border-radius:8px;text-decoration:none;display:inline-block;}
+  .btn-outline{border:1.5px solid rgba(0,200,224,0.4);color:var(--sv-cyan);font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;padding:0.85rem 2rem;border-radius:8px;text-decoration:none;display:inline-block;}
+  section.content{padding:60px 2rem;max-width:1100px;margin:0 auto;}
+  .section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sv-cyan);margin-bottom:0.6rem;}
+  .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:0.75rem;}
+  .section-desc{color:var(--sv-mid);line-height:1.7;font-size:0.95rem;margin-bottom:2rem;max-width:680px;}
+  .text-block{margin-bottom:1.5rem;color:var(--sv-mid);line-height:1.8;font-size:0.95rem;}
+  .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;}
+  .feature-card{background:rgba(255,255,255,0.04);border:1px solid rgba(0,200,224,0.12);border-radius:16px;padding:1.5rem;transition:border-color 0.2s,background 0.2s;}
+  .feature-card:hover{border-color:rgba(0,200,224,0.3);background:rgba(0,200,224,0.06);}
+  .feature-icon{font-size:1.75rem;margin-bottom:0.85rem;}
+  .feature-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.4rem;color:white;}
+  .feature-text{font-size:0.88rem;color:var(--sv-mid);line-height:1.6;}
+  .note-panel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:2rem;margin-top:2rem;}
+  .note-panel h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:0.75rem;}
+  .note-panel p{color:var(--sv-mid);line-height:1.7;}
+  .cta-band{background:linear-gradient(135deg,rgba(0,200,224,0.15),rgba(26,79,214,0.2));border:1px solid rgba(0,200,224,0.2);border-radius:20px;padding:50px 2.5rem;text-align:center;margin:60px 2rem;}
+  .cta-band h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:0.75rem;}
+  .cta-band p{color:var(--sv-mid);margin-bottom:2rem;font-size:0.95rem;}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  footer{background:rgba(0,0,0,0.4);padding:30px 2rem 20px;border-top:1px solid rgba(255,255,255,0.06);}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--sv-mid);}
+  .footer-inner a{color:var(--sv-cyan);text-decoration:none;}
+  @media(max-width:900px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}.grid-two{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo-wrap"><div class="logo-icon">SV</div><div class="logo-text">Soft<span>Vision</span></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="pos.html">POS</a></li>
+    <li><a href="restaurant.html">Restaurant</a></li>
+    <li><a href="hotel.html">Hotel</a></li>
+    <li><a href="erp.html">ERP</a></li>
+    <li><a href="service-mgmt.html">Service Mgmt</a></li>
+    <li><a href="custom-software.html">Custom</a></li>
+    <li><a href="tailoring.html">Tailoring</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get a Demo →</a>
+  <div class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mm">
+  <a href="index.html">🏠 Home</a>
+  <a href="pos.html">🖥 POS Systems</a>
+  <a href="restaurant.html">🍽 Restaurant</a>
+  <a href="hotel.html">🏨 Hotel</a>
+  <a href="erp.html">📊 ERP</a>
+  <a href="service-mgmt.html">🔧 Service Mgmt</a>
+  <a href="custom-software.html">💻 Custom</a>
+  <a href="tailoring.html">✂️ Tailoring</a>
+  <a href="about.html">ℹ️ About</a>
+  <a href="contact.html">📞 Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="hero-inner">
+    <div class="page-badge">Corporate History & Regional Growth</div>
+    <h1 class="page-title">The Architecture, Evolution, and Regional Expansion <span>of SoftVision IT Group</span></h1>
+    <p class="page-desc">From enterprise middleware and BUSY ERP deployments to regional decentralization in Mahiyanganaya, SoftVision has built a local technology platform with national reach and global engineering standards.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn-primary">Talk to Our Team</a>
+      <a href="tel:+94704449091" class="btn-outline">📞 +94 70 444 9091</a>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="section-label">Why SoftVision</div>
+  <h2 class="section-title">A Local Anchor for Sri Lankan Enterprise Technology</h2>
+  <p class="section-desc">SoftVision IT Group demonstrates how a strategic alliance of software, ERP, and international career services can create resilient, regionally focused technology infrastructure.</p>
+  <div class="text-block">Soft Vision Technologies (Pvt) Ltd has been operating for over fifteen years, evolving from a vendor of local business management systems into a diversified enterprise platform provider and BPO partner. The group's structure is designed to bridge complex global engineering with the daily operational needs of Sri Lankan businesses.</div>
+  <div class="text-block">The group is anchored by a tripartite alliance that combines software engineering, cloud ERP deployment, and professional development services. This structure supports more than 750 clients across Sri Lanka and overseas markets while protecting the business from market shifts.</div>
+</section>
+
+<section class="content" style="padding-top:0;">
+  <div class="section-label">Tripartite Alliance</div>
+  <h2 class="section-title">Three Pillars of the SoftVision Ecosystem</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">💻</div>
+      <div class="feature-title">Soft Vision Technologies</div>
+      <div class="feature-text">Enterprise-grade software development, API infrastructure, custom web and native mobile apps, and cloud integrations built for demanding business use cases.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Busy InfoTech</div>
+      <div class="feature-text">The fiscal engine of the alliance, delivering BUSY Accounting Software and Cloud ERP solutions tailored for commercial ledgers, inventory pipelines, and tax compliance in Sri Lanka.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <div class="feature-title">Skyb Overseas Consultants</div>
+      <div class="feature-text">Educational and career routing services that create a direct pipeline between technical training and international placement opportunities.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡</div>
+      <div class="feature-title">Resilient Alliance Model</div>
+      <div class="feature-text">Combining software engineering, ERP frameworks, and talent consultancy to stabilize operations across economic cycles and keep regional clients supported.</div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="section-label">Technical Architecture</div>
+  <h2 class="section-title">Cloud-Native, Secure, and Built for Scale</h2>
+  <div class="grid-two">
+    <div>
+      <div class="text-block"><strong>Service Level Commitment.</strong> SoftVision maintains a 99.99% uptime SLA across enterprise clients, with mission-critical backend systems managed through secure, cloud-native architecture.</div>
+      <div class="text-block"><strong>Modern Engineering Stack.</strong> Development is centered on React for user interfaces, with Node.js, Python, and Java powering backend services. Applications run inside isolated Docker containers and leverage PostgreSQL with Redis caches for low-latency data streams.</div>
+    </div>
+    <div>
+      <div class="feature-card" style="background:rgba(0,200,224,0.08);border-color:rgba(0,200,224,0.18);">
+        <div class="feature-icon">⚙️</div>
+        <div class="feature-title">Core Middleware Layers</div>
+        <div class="feature-text">API management, developer portals, rate limiting, SSO, MFA, RBAC, and a connector platform that integrates over 200 legacy systems into unified enterprise data streams.</div>
+      </div>
+      <div class="feature-card" style="background:rgba(0,200,224,0.08);border-color:rgba(0,200,224,0.18);">
+        <div class="feature-icon">🏭</div>
+        <div class="feature-title">Industry-Specific Products</div>
+        <div class="feature-text">Specialized solutions for fuel billing systems, container yard management with gate automation and 3D mapping, and other industrial software products built for real-time operational control.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" style="padding-top:0;">
+  <div class="section-label">Regional Expansion</div>
+  <h2 class="section-title">MCC Mahiyanganaya: Decentralizing Software Support</h2>
+  <div class="text-block">SoftVision's decision to open a branch inside the Mahiyangana Commercial Complex marks a strategic move beyond the Western Province. The branch provides local deployment, real-time support, and workshops for Uva and Eastern region businesses that previously lacked direct access to enterprise software services.</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏢</div>
+      <div class="feature-title">Local Enterprise Hub</div>
+      <div class="feature-text">The MCC branch serves as a regional hub for BUSY ERP deployment, support desks, and vocational workshops, enabling faster on-the-ground response for retailers, manufacturers, and agricultural supply chains.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📚</div>
+      <div class="feature-title">Skills and Support</div>
+      <div class="feature-text">The branch also hosts educational events, training sessions, and direct support clinics so businesses can transition smoothly from manual ledgers to automated cloud platforms.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛰️</div>
+      <div class="feature-title">Regional Availability</div>
+      <div class="feature-text">By situating operations in Mahiyanganaya, SoftVision brings enterprise-grade technology closer to rural commerce, proving that advanced software infrastructure belongs wherever business happens.</div>
+    </div>
+  </div>
+</section>
+
+<section class="content" style="padding-top:0;">
+  <div class="section-label">Operational Nuances</div>
+  <h2 class="section-title">A Support Calendar Built for Sri Lankan Commerce</h2>
+  <div class="text-block">The company operates on a six-day corporate schedule, prioritizing weekend support when retail and logistics workflows are busiest. This is part of a deliberate strategy to align technical resources with local business rhythms.</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🕒</div>
+      <div class="feature-title">Monday – Friday</div>
+      <div class="feature-text">08:30 AM – 05:00 PM for full corporate, development, and customer support operations.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Saturday</div>
+      <div class="feature-text">Closed.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <div class="feature-title">Sunday</div>
+      <div class="feature-text">08:30 AM – 01:00 PM for specialized weekend emergency support and retail system syncs.</div>
+    </div>
+  </div>
+  <div class="note-panel">
+    <h3>Centralized Contact and Headquarters</h3>
+    <p>SoftVision continues to maintain its primary headquarters at 288/90 Baseline Road, Colombo 09, while supporting emergency corporate outreach through +94 11 4288 100 and +94 11 2696 651. Departmental emails route inquiries efficiently across info@softvision.lk, info@busy.lk, and support@busy.lk.</p>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Learn How SoftVision Can Support Your Business</h2>
+  <p>Whether you need ERP deployment, custom software, or regional technical assistance, visit the MCC Mahiyanganaya branch or get in touch with our team today.</p>
+  <div class="cta-btns">
+    <a href="contact.html" class="btn-primary">Visit Our Mahiyanganaya Branch</a>
+    <a href="tel:+94704449091" class="btn-outline">📞 +94 70 444 9091</a>
+  </div>
+</div>
+
+<footer><div class="footer-inner"><span>© 2025 SoftVision IT Group – MCC Mahiyanganaya</span><span><a href="index.html">← Back to Home</a></span></div></footer>
+</body>
+</html>
