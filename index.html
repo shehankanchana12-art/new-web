@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoftVision IT Group – MCC Mahiyanganaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --sv-navy: #0a1628;
+    --sv-blue: #1a4fd6;
+    --sv-cyan: #00c8e0;
+    --sv-gold: #f5c842;
+    --sv-light: #eef2ff;
+    --sv-mid: #c7d4f5;
+    --sv-white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sv-navy);
+    color: var(--sv-white);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,200,224,0.15);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 0.75rem; }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--sv-blue), var(--sv-cyan));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1rem; color: white;
+  }
+  .logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: white; }
+  .logo-text span { color: var(--sv-cyan); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--sv-mid); font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sv-cyan); }
+  .nav-cta {
+    background: linear-gradient(90deg, var(--sv-blue), var(--sv-cyan));
+    color: white; font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 0.8rem; padding: 0.5rem 1.25rem; border-radius: 6px;
+    text-decoration: none; transition: opacity 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 2rem 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(26,79,214,0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0,200,224,0.12) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,200,224,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,200,224,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .hero-content { position: relative; max-width: 900px; margin: 0 auto; width: 100%; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,200,224,0.1); border: 1px solid rgba(0,200,224,0.3);
+    color: var(--sv-cyan); font-size: 0.75rem; font-weight: 600;
+    padding: 0.35rem 0.9rem; border-radius: 100px;
+    margin-bottom: 1.5rem; letter-spacing: 0.08em; text-transform: uppercase;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800; line-height: 1.08; margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both 0.1s;
+  }
+  .hero-title .line2 { color: var(--sv-cyan); }
+  .hero-title .line3 { color: var(--sv-mid); font-weight: 600; font-size: 0.55em; }
+  .hero-desc {
+    font-size: 1.1rem; color: var(--sv-mid); max-width: 560px;
+    line-height: 1.7; margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s ease both 0.2s;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s ease both 0.3s; }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--sv-blue), var(--sv-cyan));
+    color: white; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.95rem; padding: 0.85rem 2rem; border-radius: 8px;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 32px rgba(26,79,214,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,200,224,0.35); }
+  .btn-outline {
+    border: 1.5px solid rgba(0,200,224,0.4); color: var(--sv-cyan);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+    padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(0,200,224,0.1); border-color: var(--sv-cyan); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    animation: fadeUp 0.7s ease both 0.4s; flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--sv-cyan); }
+  .stat-label { font-size: 0.8rem; color: var(--sv-mid); margin-top: 0.2rem; }
+
+  /* SERVICES GRID */
+  .section { padding: 80px 2rem; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--sv-cyan); margin-bottom: 0.75rem;
+  }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
+  .section-desc { color: var(--sv-mid); max-width: 560px; line-height: 1.7; margin-bottom: 3rem; font-size: 1rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(0,200,224,0.1);
+    border-radius: 16px; padding: 1.75rem;
+    text-decoration: none; color: white;
+    transition: transform 0.25s, border-color 0.25s, background 0.25s;
+    display: block;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--sv-blue), var(--sv-cyan));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(0,200,224,0.3); background: rgba(255,255,255,0.06); }
+  .service-card:hover::before { opacity: 1; }
+  .card-icon {
+    width: 48px; height: 48px; border-radius: 12px; margin-bottom: 1.25rem;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  }
+  .card-title { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card-desc { font-size: 0.85rem; color: var(--sv-mid); line-height: 1.6; }
+  .card-arrow {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--sv-cyan); font-size: 0.78rem; font-weight: 600;
+    margin-top: 1rem; transition: gap 0.2s;
+  }
+  .service-card:hover .card-arrow { gap: 0.65rem; }
+
+  /* WHY US */
+  .why-section {
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid rgba(0,200,224,0.08);
+    border-bottom: 1px solid rgba(0,200,224,0.08);
+    padding: 80px 2rem;
+  }
+  .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .why-features { display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-feature {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem; border-radius: 12px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(0,200,224,0.08);
+  }
+  .feature-icon {
+    width: 40px; height: 40px; min-width: 40px;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, rgba(26,79,214,0.5), rgba(0,200,224,0.3));
+  }
+  .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .feature-text { font-size: 0.82rem; color: var(--sv-mid); line-height: 1.6; }
+
+  /* CONTACT BAND */
+  .contact-band {
+    background: linear-gradient(135deg, var(--sv-blue) 0%, #0d2e7a 50%, rgba(0,200,224,0.3) 100%);
+    padding: 60px 2rem; text-align: center;
+  }
+  .contact-band h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 1rem; }
+  .contact-band p { color: var(--sv-mid); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-chip {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.65rem 1.25rem; border-radius: 8px;
+    color: white; text-decoration: none; font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .contact-chip:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  footer {
+    background: rgba(0,0,0,0.4); padding: 40px 2rem 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+  .footer-brand p { font-size: 0.82rem; color: var(--sv-mid); line-height: 1.7; margin-top: 0.75rem; max-width: 280px; }
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--sv-cyan); margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-col ul a { color: var(--sv-mid); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; font-size: 0.75rem; color: var(--sv-mid); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* MOBILE NAV */
+  .mobile-menu {
+    display: none; position: fixed; inset: 64px 0 0 0; z-index: 99;
+    background: rgba(10,22,40,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; padding: 2rem;
+    gap: 0.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--sv-mid); font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 1.15rem; text-decoration: none; padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--sv-cyan); }
+
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .why-inner { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">SV</div>
+    <div class="logo-text">Soft<span>Vision</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="erp.html">ERP</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Started →</a>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="pos.html">🖥 POS Systems</a>
+  <a href="restaurant.html">🍽 Restaurant Management</a>
+  <a href="hotel.html">🏨 Hotel Management</a>
+  <a href="erp.html">📊 ERP Systems</a>
+  <a href="service-mgmt.html">🔧 Service Management</a>
+  <a href="custom-software.html">💻 Custom Software</a>
+  <a href="tailoring.html">✂️ Tailoring System</a>
+  <a href="contact.html">📞 Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Now Open · MCC Mahiyanganaya, Sri Lanka</div>
+    <h1 class="hero-title">
+      Enterprise Technology<br>
+      <span class="line2">For Every Business</span><br>
+      <span class="line3">SoftVision IT Group — Regional Branch</span>
+    </h1>
+    <p class="hero-desc">
+      Bringing cloud-grade software solutions directly to Uva &amp; Eastern province businesses. 
+      POS systems, ERP, hotel &amp; restaurant management, custom software — on your doorstep.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Our Solutions</a>
+      <a href="contact.html" class="btn-outline">Talk to an Expert</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">Years of Experience</div></div>
+      <div class="stat-item"><div class="stat-num">750+</div><div class="stat-label">Clients Served</div></div>
+      <div class="stat-item"><div class="stat-num">99.99%</div><div class="stat-label">Uptime SLA</div></div>
+      <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Integrations</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div id="services" style="background: var(--sv-navy); padding: 0 0 20px;">
+  <div class="section">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Complete Business Software Solutions</h2>
+    <p class="section-desc">From retail POS to full ERP deployments — we implement, train, and support every system locally at our MCC Mahiyanganaya branch.</p>
+    <div class="services-grid">
+
+      <a href="pos.html" class="service-card">
+        <div class="card-icon" style="background:rgba(26,79,214,0.25);">🖥</div>
+        <div class="card-title">POS Systems</div>
+        <div class="card-desc">Complete point-of-sale solutions for retail shops, supermarkets, pharmacies and more with real-time inventory and barcode support.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="restaurant.html" class="service-card">
+        <div class="card-icon" style="background:rgba(245,200,66,0.18);">🍽</div>
+        <div class="card-title">Restaurant Management</div>
+        <div class="card-desc">Table management, KOT printing, menu management, billing and digital receipts designed for Sri Lankan restaurants of all sizes.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="hotel.html" class="service-card">
+        <div class="card-icon" style="background:rgba(0,200,224,0.18);">🏨</div>
+        <div class="card-title">Hotel Management</div>
+        <div class="card-desc">Front desk, room reservations, housekeeping, billing and guest management systems for guesthouses, inns, and full hotels.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="erp.html" class="service-card">
+        <div class="card-icon" style="background:rgba(26,79,214,0.25);">📊</div>
+        <div class="card-title">ERP Systems</div>
+        <div class="card-desc">Cloud-based BUSY ERP covering accounting, inventory, payroll, and tax compliance — built for retail and industrial sectors.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="service-mgmt.html" class="service-card">
+        <div class="card-icon" style="background:rgba(0,200,224,0.18);">🔧</div>
+        <div class="card-title">Service Management</div>
+        <div class="card-desc">Job card tracking, technician dispatch, warranty management and customer follow-up tools for repair and service businesses.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="custom-software.html" class="service-card">
+        <div class="card-icon" style="background:rgba(245,200,66,0.18);">💻</div>
+        <div class="card-title">Custom Software</div>
+        <div class="card-desc">Tailor-made web and mobile applications built on React, Node.js, Python and Java with cloud-native architecture for your unique workflow.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="tailoring.html" class="service-card">
+        <div class="card-icon" style="background:rgba(26,79,214,0.25);">✂️</div>
+        <div class="card-title">Tailoring Management</div>
+        <div class="card-desc">Order tracking, customer measurements, delivery scheduling and billing for tailoring shops and garment businesses.</div>
+        <div class="card-arrow">Learn more →</div>
+      </a>
+
+      <a href="contact.html" class="service-card">
+        <div class="card-icon" style="background:rgba(0,200,224,0.18);">🤝</div>
+        <div class="card-title">IT Consulting & Support</div>
+        <div class="card-desc">On-site setup, staff training workshops, ongoing technical support and cloud migration planning — available locally in Mahiyanganaya.</div>
+        <div class="card-arrow">Get in touch →</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="why-section">
+  <div class="why-inner">
+    <div>
+      <div class="section-label">Why SoftVision MCC</div>
+      <h2 class="section-title">Enterprise-Grade Tech, Locally Available</h2>
+      <p class="section-desc">For the first time, businesses in the Uva and Eastern province have direct, on-ground access to the same technology that powers enterprise clients in Colombo.</p>
+      <a href="contact.html" class="btn-primary" style="display:inline-block; margin-top:0.5rem;">Visit Us at MCC →</a>
+    </div>
+    <div class="why-features">
+      <div class="why-feature">
+        <div class="feature-icon">📍</div>
+        <div>
+          <div class="feature-title">Local Branch at MCC Mahiyanganaya</div>
+          <div class="feature-text">Walk-in support, live demos, and on-site installation — no more waiting on Colombo teams.</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="feature-icon">⚡</div>
+        <div>
+          <div class="feature-title">Same-Day Technical Support</div>
+          <div class="feature-text">Our local team responds immediately to issues, reducing business downtime to near zero.</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="feature-icon">📚</div>
+        <div>
+          <div class="feature-title">Training Workshops in Sinhala</div>
+          <div class="feature-text">Staff training conducted locally in your language, making software adoption easy and fast.</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="feature-icon">☁️</div>
+        <div>
+          <div class="feature-title">Cloud Backup &amp; Security</div>
+          <div class="feature-text">All systems backed by 99.99% uptime SLA with encrypted cloud data protection.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT BAND -->
+<div class="contact-band">
+  <h2>Ready to Digitize Your Business?</h2>
+  <p>Visit us at the Mahiyangana Commercial Complex or call us today. Our team is ready to guide you.</p>
+  <div class="contact-links">
+    <a href="tel:+94704449091" class="contact-chip">📞 +94 70 444 9091</a>
+    <a href="mailto:info@softvision.lk" class="contact-chip">✉️ info@softvision.lk</a>
+    <a href="contact.html" class="contact-chip">📍 MCC Mahiyanganaya</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-wrap">
+          <div class="logo-icon">SV</div>
+          <div class="logo-text">Soft<span>Vision</span> IT Group</div>
+        </div>
+        <p>Delivering enterprise-grade software solutions to businesses across Sri Lanka. Now locally available at MCC Mahiyanganaya.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="pos.html">POS Systems</a></li>
+          <li><a href="restaurant.html">Restaurant Mgmt</a></li>
+          <li><a href="hotel.html">Hotel Mgmt</a></li>
+          <li><a href="erp.html">ERP Systems</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="service-mgmt.html">Service Mgmt</a></li>
+          <li><a href="custom-software.html">Custom Software</a></li>
+          <li><a href="tailoring.html">Tailoring System</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+94704449091">+94 70 444 9091</a></li>
+          <li><a href="tel:+94114288100">+94 11 428 8100</a></li>
+          <li><a href="mailto:info@softvision.lk">info@softvision.lk</a></li>
+          <li><a href="mailto:support@busy.lk">support@busy.lk</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SoftVision IT Group. MCC Mahiyanganaya Branch.</span>
+      <span>288/90 Baseline Road, Colombo 09 | HQ</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+  // Animate cards on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.animation = 'fadeUp 0.5s ease both'; } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.service-card, .why-feature').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
