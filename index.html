@@ -141,6 +141,19 @@
     display: block;
     position: relative; overflow: hidden;
   }
+
+  /* service-card 3D mini cube */
+  .service-card { perspective: 800px; }
+  .service-card .service-box { position: relative; transform-style: preserve-3d; transition: transform 0.35s ease, box-shadow 0.35s ease; z-index: 1; display:block; }
+  .service-card .service-box .face { position: relative; border-radius: 12px; background: linear-gradient(135deg, rgba(41,121,255,0.12), rgba(0,200,224,0.06)); box-shadow: 0 14px 36px rgba(0,0,0,0.28); backface-visibility: hidden; display:flex;flex-direction:column;justify-content:flex-start;padding:1.25rem; }
+  .service-card .service-box .face.front { transform: none; }
+  .service-card .service-box .face.back { display:none; }
+  .service-card:hover .service-box { transform: translateY(-6px) rotateX(3deg) rotateY(2deg); box-shadow: 0 24px 48px rgba(0,0,0,0.32); }
+  .service-card .service-box .face .card-icon{ margin-bottom: 0.9rem; width:48px; height:48px; display:flex;align-items:center;justify-content:center;border-radius:10px; font-size:1.4rem; }
+  .service-card .service-box .face .card-title{ font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.35rem; }
+  .service-card .service-box .face .card-desc{ color:var(--sv-mid); font-size:0.85rem; line-height:1.5; flex:1; }
+  .service-card .service-box .face .card-arrow{ margin-top:0.8rem; color:var(--sv-cyan); font-weight:700; }
+  @keyframes miniFloat { 0% { transform: translateZ(0) translateY(0) rotateX(0) rotateY(0); } 50% { transform: translateZ(-10px) translateY(-6px) rotateX(6deg) rotateY(4deg); } 100% { transform: translateZ(0) translateY(0) rotateX(0) rotateY(0); } }
   .service-card::before {
     content: ''; position: absolute;
     top: 0; left: 0; right: 0; height: 2px;
@@ -247,6 +260,28 @@
     .footer-top { grid-template-columns: 1fr; }
     .hero-stats { gap: 1.5rem; }
   }
+
+  /* ANIMATED WALLPAPER + 3D BOXES */
+  .animation-wallpaper { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; perspective: 1000px; }
+  .wallpaper-gradient { position: absolute; inset: -20% -10% -20% -10%; background: linear-gradient(120deg, rgba(41,121,255,0.12), rgba(0,200,224,0.08), rgba(255,255,255,0.02)); filter: blur(60px); animation: gradientShift 14s linear infinite; opacity: 0.95; transform: translateZ(-200px) scale(1.4); }
+  @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+  .cube { position: absolute; width: 160px; height: 160px; transform-style: preserve-3d; animation: cubeFloat 8s ease-in-out infinite; opacity: 0.9; will-change: transform, opacity; }
+  .cube .face { position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(135deg, rgba(41,121,255,0.18), rgba(0,200,224,0.12)); box-shadow: 0 12px 36px rgba(0,0,0,0.32); backface-visibility: hidden; }
+
+  .cube.c1 { left: 6%; top: 8%; transform: translateZ(0px) rotateX(12deg) rotateY(-8deg) scale(0.86); animation-duration: 10s; }
+  .cube.c2 { right: 8%; top: 14%; transform: translateZ(0px) rotateX(8deg) rotateY(6deg) scale(0.92); animation-duration: 9s; }
+  .cube.c3 { left: 18%; bottom: 12%; transform: translateZ(0px) rotateX(6deg) rotateY(-12deg) scale(0.76); animation-duration: 11s; }
+  .cube.c4 { right: 22%; bottom: 20%; transform: translateZ(0px) rotateX(10deg) rotateY(8deg) scale(0.8); animation-duration: 12s; }
+  .cube.c5 { left: 44%; top: 6%; transform: translateZ(0px) rotateX(4deg) rotateY(4deg) scale(0.7); animation-duration: 13s; }
+  .cube.c6 { left: 62%; top: 24%; transform: translateZ(0px) rotateX(14deg) rotateY(-6deg) scale(0.9); animation-duration: 9.5s; }
+  .cube.c7 { left: 36%; bottom: 6%; transform: translateZ(0px) rotateX(6deg) rotateY(6deg) scale(0.78); animation-duration: 10.5s; }
+  .cube.c8 { right: 42%; top: 40%; transform: translateZ(0px) rotateX(8deg) rotateY(-4deg) scale(0.82); animation-duration: 8.5s; }
+
+  @keyframes cubeFloat { 0% { transform: translateY(0) rotateX(0) rotateY(0); } 50% { transform: translateY(-28px) rotateX(6deg) rotateY(8deg); } 100% { transform: translateY(0) rotateX(0) rotateY(0); } }
+
+  /* Subtle hide on small screens */
+  @media (max-width: 900px) { .animation-wallpaper { display: none; } }
 </style>
 </head>
 <body>
@@ -286,6 +321,17 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <div class="animation-wallpaper" aria-hidden="true">
+    <div class="wallpaper-gradient"></div>
+    <div class="cube c1"><div class="face"></div></div>
+    <div class="cube c2"><div class="face"></div></div>
+    <div class="cube c3"><div class="face"></div></div>
+    <div class="cube c4"><div class="face"></div></div>
+    <div class="cube c5"><div class="face"></div></div>
+    <div class="cube c6"><div class="face"></div></div>
+    <div class="cube c7"><div class="face"></div></div>
+    <div class="cube c8"><div class="face"></div></div>
+  </div>
   <div class="hero-content">
     <div class="hero-badge">📍 Now Open · MCC Mahiyanganaya, Sri Lanka</div>
     <h1 class="hero-title">
@@ -319,59 +365,99 @@
     <div class="services-grid">
 
       <a href="pos.html" class="service-card">
-        <div class="card-icon" style="background:rgba(41,121,255,0.25);">🖥</div>
-        <div class="card-title">POS Systems</div>
-        <div class="card-desc">Complete point-of-sale solutions for retail shops, supermarkets, pharmacies and more with real-time inventory and barcode support.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(41,121,255,0.25);">🖥</div>
+            <div class="card-title">POS Systems</div>
+            <div class="card-desc">Complete point-of-sale solutions for retail shops, supermarkets, pharmacies and more with real-time inventory and barcode support.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="restaurant.html" class="service-card">
-        <div class="card-icon" style="background:rgba(41,121,255,0.18);">🍽</div>
-        <div class="card-title">Restaurant Management</div>
-        <div class="card-desc">Table management, KOT printing, menu management, billing and digital receipts designed for Sri Lankan restaurants of all sizes.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(41,121,255,0.18);">🍽</div>
+            <div class="card-title">Restaurant Management</div>
+            <div class="card-desc">Table management, KOT printing, menu management, billing and digital receipts designed for Sri Lankan restaurants of all sizes.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="hotel.html" class="service-card">
-        <div class="card-icon" style="background:rgba(0,200,224,0.18);">🏨</div>
-        <div class="card-title">Hotel Management</div>
-        <div class="card-desc">Front desk, room reservations, housekeeping, billing and guest management systems for guesthouses, inns, and full hotels.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(0,200,224,0.18);">🏨</div>
+            <div class="card-title">Hotel Management</div>
+            <div class="card-desc">Front desk, room reservations, housekeeping, billing and guest management systems for guesthouses, inns, and full hotels.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="erp.html" class="service-card">
-        <div class="card-icon" style="background:rgba(41,121,255,0.25);">📊</div>
-        <div class="card-title">ERP Systems</div>
-        <div class="card-desc">Cloud-based BUSY ERP covering accounting, inventory, payroll, and tax compliance — built for retail and industrial sectors.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(41,121,255,0.25);">📊</div>
+            <div class="card-title">ERP Systems</div>
+            <div class="card-desc">Cloud-based BUSY ERP covering accounting, inventory, payroll, and tax compliance — built for retail and industrial sectors.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="service-mgmt.html" class="service-card">
-        <div class="card-icon" style="background:rgba(0,200,224,0.18);">🔧</div>
-        <div class="card-title">Service Management</div>
-        <div class="card-desc">Job card tracking, technician dispatch, warranty management and customer follow-up tools for repair and service businesses.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(0,200,224,0.18);">🔧</div>
+            <div class="card-title">Service Management</div>
+            <div class="card-desc">Job card tracking, technician dispatch, warranty management and customer follow-up tools for repair and service businesses.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="custom-software.html" class="service-card">
-        <div class="card-icon" style="background:rgba(41,121,255,0.18);">💻</div>
-        <div class="card-title">Custom Software</div>
-        <div class="card-desc">Tailor-made web and mobile applications built on React, Node.js, Python and Java with cloud-native architecture for your unique workflow.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(41,121,255,0.18);">💻</div>
+            <div class="card-title">Custom Software</div>
+            <div class="card-desc">Tailor-made web and mobile applications built on React, Node.js, Python and Java with cloud-native architecture for your unique workflow.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="tailoring.html" class="service-card">
-        <div class="card-icon" style="background:rgba(41,121,255,0.25);">✂️</div>
-        <div class="card-title">Tailoring Management</div>
-        <div class="card-desc">Order tracking, customer measurements, delivery scheduling and billing for tailoring shops and garment businesses.</div>
-        <div class="card-arrow">Learn more →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(41,121,255,0.25);">✂️</div>
+            <div class="card-title">Tailoring Management</div>
+            <div class="card-desc">Order tracking, customer measurements, delivery scheduling and billing for tailoring shops and garment businesses.</div>
+            <div class="card-arrow">Learn more →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
       <a href="contact.html" class="service-card">
-        <div class="card-icon" style="background:rgba(0,200,224,0.18);">🤝</div>
-        <div class="card-title">IT Consulting & Support</div>
-        <div class="card-desc">On-site setup, staff training workshops, ongoing technical support and cloud migration planning — available locally in Mahiyanganaya.</div>
-        <div class="card-arrow">Get in touch →</div>
+        <div class="service-box" aria-hidden="false">
+          <div class="face front">
+            <div class="card-icon" style="background:rgba(0,200,224,0.18);">🤝</div>
+            <div class="card-title">IT Consulting & Support</div>
+            <div class="card-desc">On-site setup, staff training workshops, ongoing technical support and cloud migration planning — available locally in Mahiyanganaya.</div>
+            <div class="card-arrow">Get in touch →</div>
+          </div>
+          <div class="face back"></div>
+        </div>
       </a>
 
     </div>
@@ -487,6 +573,42 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.style.animation = 'fadeUp 0.5s ease both'; } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.service-card, .why-feature').forEach(el => observer.observe(el));
+
+  // Parallax + Cube subtle motion
+  (function(){
+    const hero = document.querySelector('.hero');
+    const wallpaper = document.querySelector('.animation-wallpaper');
+    const cubes = document.querySelectorAll('.animation-wallpaper .cube');
+    if (!hero || !wallpaper || !cubes.length) return;
+
+    // Mouse move parallax
+    hero.addEventListener('mousemove', (ev) => {
+      const r = hero.getBoundingClientRect();
+      const px = (ev.clientX - r.left) / r.width - 0.5; // -0.5..0.5
+      const py = (ev.clientY - r.top) / r.height - 0.5;
+      // shift gradient and cubes
+      wallpaper.style.transform = `translate3d(${px * 18}px, ${py * 10}px, 0)`;
+      cubes.forEach((c, i) => {
+        const depth = (i % 3) * 12; // varied depth
+        const tx = px * (20 + i * 4);
+        const ty = py * (12 + i * 3);
+        c.style.transform = `${c.style.transform.split(') ')[0] || ''} translate3d(${tx}px, ${ty}px, ${-depth}px)`;
+      });
+    });
+
+    // Gentle auto-rotation loop for cubes
+    let angle = 0;
+    function tick(){
+      angle += 0.12;
+      cubes.forEach((c, i) => {
+        const rot = (Math.sin((angle + i) * 0.6) * 6).toFixed(2);
+        const rotY = (Math.cos((angle + i) * 0.4) * 6).toFixed(2);
+        c.style.transform = c.style.transform.replace(/rotateX\([^\)]*\)/, `rotateX(${rot}deg)`).replace(/rotateY\([^\)]*\)/, `rotateY(${rotY}deg)`);
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
 </script>
 </body>
 </html>
