@@ -15,17 +15,11 @@
   .page-hero { perspective: 1000px; }
   .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 25% 20%, rgba(255,255,255,0.15), transparent 28%), radial-gradient(circle at 75% 75%, rgba(0,200,224,0.08), transparent 32%); pointer-events:none; z-index:1; }
   .hero-inner, .page-badge, .section-title, .btn-primary, .btn-outline, .feat-card, .module-card, .service-card, .cta-band { transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease; }
-  .hero-inner { animation: sv-float 10s ease-in-out infinite; transform-origin:center; position:relative; z-index:2; }
-  .page-title { animation: sv-tilt 1.5s ease both; transform-origin:center; }
+  .hero-inner { transform-origin:center; position:relative; z-index:2; }
+  .page-title { transform-origin:center; }
   .btn-primary:hover, .btn-outline:hover, .feat-card:hover, .module-card:hover, .service-card:hover, .cta-band:hover { transform: translateY(-8px) rotateX(3deg) rotateY(1deg) scale(1.01); box-shadow: 0 24px 55px rgba(0,0,0,0.22); }
-  .feat-card, .module-card, .service-card { animation: sv-card-float 9s ease-in-out infinite alternate; }
   .btn-primary, .btn-outline { backface-visibility: hidden; }
-  .page-badge { animation: sv-badge-glow 4.8s ease-in-out infinite alternate; }
   .page-hero-grid { transform: translateZ(-18px) scale(1.02); }
-  @keyframes sv-float { 0% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-12px,10px); } 100% { transform: translate3d(0,0,0); } }
-  @keyframes sv-card-float { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(0,-6px,0); } }
-  @keyframes sv-tilt { 0% { opacity: 0; transform: translate3d(0,20px,0) rotateX(12deg); } 100% { opacity: 1; transform: translate3d(0,0,0) rotateX(0); } }
-  @keyframes sv-badge-glow { 0% { transform: translateZ(4px) scale(1); } 100% { transform: translateZ(6px) scale(1.02); } }
   h1,h2,h3,h4{font-family:'Inter',sans-serif;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,200,224,0.15);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;}
   .logo-wrap{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
